@@ -36,9 +36,11 @@ class SettingController: UIViewController {
     }()
     
     //你想知道的单词都在这里
-    fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言",
-        "1": "应用内评分:欢迎给\(kAppName)打评分！,AppStore评价:欢迎给\(kAppName)写评论!,分享给朋友:与身边的好友一起分享！",
-        "2": "隐私条款:用户服务使用说明,意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:未来逐步开放代码，欢迎关注,关于应用:\(kAppName)"] as [String : String]
+    fileprivate var titles = [
+        "0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言",
+//        "1": "应用内评分:欢迎给\(kAppName)打评分！,AppStore评价:欢迎给\(kAppName)写评论!,分享给朋友:与身边的好友一起分享！",
+        "1": "隐私条款:用户服务使用说明,开源地址:未来逐步开放代码，欢迎关注,关于应用:\(kAppName)"
+        ] as [String : String]
     
 }
 
@@ -155,49 +157,49 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             break;
+//        case 1:
+//            if row == 0 {
+//                if #available(iOS 10.3, *) {
+//                    SKStoreReviewController.requestReview()
+//                } else {
+//                    gotoAppstore(isAssessment: true)
+//                }
+//            }
+//            if row == 1 {
+//                gotoAppstore(isAssessment: true)
+//            }
+//            if row == 2 {
+//
+//                let image = #imageLiteral(resourceName: "iEnglish")
+//                let url = NSURL(string: kAppDownloadURl)
+//                let string = "Hello, \(kAppName)! 这是英语初学者必备的单词学习的好工具，强烈推荐给你哦！希望它能成为你英语学习的快速阶梯！" + "iOS下载链接：" + kAppDownloadURl
+//                let activityController = UIActivityViewController(activityItems: [image ,url!,string], applicationActivities: nil)
+//                self.present(activityController, animated: true, completion: nil)
+//
+//                //                ITCommonAPI().checkAppUpdate(newHandler: { (isNew, version, error) in
+//                //                    if isNew {
+//                //
+//                //                    }
+//                //                })
+//            }
+//
+//            break
         case 1:
             if row == 0 {
-                if #available(iOS 10.3, *) {
-                    SKStoreReviewController.requestReview()
-                } else {
-                    gotoAppstore(isAssessment: true)
-                }
+                openWebview(url: "https://github.com/Mosquito1123/SunshineEnglish/blob/master/LICENSE")
             }
+//            if row == 1 {
+//                gotoAppstore(isAssessment: true)
+//            }
+//            if row == 2 {
+//                let message = "欢迎来信，写下你的问题吧" + "\n\n\n\n" + kMarginLine + "\n 当前\(kAppName)版本：" + KAppVersion + "， 系统版本：" + String(Version.SYS_VERSION_FLOAT) + "， 设备信息：" + UIDevice.init().modelName
+//                
+//                ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], messae: message, vc: self)
+//            }
             if row == 1 {
-                gotoAppstore(isAssessment: true)
-            }
-            if row == 2 {
-                
-                let image = #imageLiteral(resourceName: "iEnglish")
-                let url = NSURL(string: kAppDownloadURl)
-                let string = "Hello, \(kAppName)! 这是英语初学者必备的单词学习的好工具，强烈推荐给你哦！希望它能成为你英语学习的快速阶梯！" + "iOS下载链接：" + kAppDownloadURl
-                let activityController = UIActivityViewController(activityItems: [image ,url!,string], applicationActivities: nil)
-                self.present(activityController, animated: true, completion: nil)
-                
-                //                ITCommonAPI().checkAppUpdate(newHandler: { (isNew, version, error) in
-                //                    if isNew {
-                //
-                //                    }
-                //                })
-            }
-            
-            break
-        case 2:
-            if row == 0 {
-                openWebview(url: "https://raw.githubusercontent.com/Winston/iEnglish/master/LICENSE")
-            }
-            if row == 1 {
-                gotoAppstore(isAssessment: true)
-            }
-            if row == 2 {
-                let message = "欢迎来信，写下你的问题吧" + "\n\n\n\n" + kMarginLine + "\n 当前\(kAppName)版本：" + KAppVersion + "， 系统版本：" + String(Version.SYS_VERSION_FLOAT) + "， 设备信息：" + UIDevice.init().modelName
-                
-                ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], messae: message, vc: self)
-            }
-            if row == 3 {
                 openWebview(url: kGithubURL)
             }
-            if row == 4 {
+            if row == 2 {
                 let vc = ITAboutAppVC()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
